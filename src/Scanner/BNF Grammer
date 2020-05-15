@@ -1,0 +1,25 @@
+// note 3 = epsilon
+program -> stmt_sequence
+
+stmt_sequence -> statement stmt_sequence | 3
+
+statement -> if_stmt| assign_stmt ; | declare_stmt ;
+
+if_stmt -> if condition {stmt_sequence} else {stmt_sequence} | 3
+
+condition -> (exp condition exp) | < | > | == | >= | <=
+
+exp -> exp op exp | (exp) | number | identifier
+
+op -> + | - | * | /
+
+assign_stmt -> exp = exp
+
+declare_stmt -> datatype identifier
+
+identifier -> [a-zA-Z] p
+
+p -> p [a-zA-Z0-9] | 3 | _
+
+datatype-> int | float | char
+
