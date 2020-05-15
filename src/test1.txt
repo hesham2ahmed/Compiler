@@ -1,0 +1,10 @@
+int main(){
+int int = 5;
+int y = 10;
+int z = 6;
+int q = x + y * x - z / x;
+if(x / 2 == 10){}
+if(y / 2 == 10){}
+if(z / 2 == 10){}
+else
+}
