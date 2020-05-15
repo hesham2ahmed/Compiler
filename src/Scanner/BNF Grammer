@@ -9,9 +9,15 @@ if_stmt -> if condition {stmt_sequence} else {stmt_sequence} | 3
 
 condition -> (exp condition exp) | < | > | == | >= | <=
 
-exp -> exp op exp | (exp) | number | identifier
+exp -> exp addop term | term
 
-op -> + | - | * | /
+addop -> + | -
+
+term -> term mulop factor | factor
+
+mulop -> * | /
+
+factor -> (exp) | number | identifier
 
 assign_stmt -> exp = exp
 
