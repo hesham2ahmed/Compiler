@@ -8,14 +8,14 @@ public class Main {
         String path_to_file = "src/test1.txt";
         // Read code from the file
         String code = readFile(path_to_file);
-
         // scan this code to tokens
         Scanner scanner = new Scanner(code);
         while(scanner.hasNestToken()){
             Token token = scanner.nextToken();
             // these tokens and their types
             System.out.print(token.getToken());
-            System.out.println(" "+token.getType());
+            System.out.print(" "+token.getType());
+            System.out.println(" "+token.getLine());
         }
     }
 
@@ -24,9 +24,11 @@ public class Main {
         try {
             File file = new File(path);
             java.util.Scanner scanner = new java.util.Scanner(file);
+            int i = 1;
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-                code += line;
+                code += line + "\n" ;
+                ++i;
             }
             scanner.close();
         }catch (FileNotFoundException e){

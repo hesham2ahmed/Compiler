@@ -12,7 +12,8 @@ public class Scanner {
     private ArrayList<TokenInfo> tokensTypes;
     //Code of strings to scan
     private String file;
-
+    // counter to track line for each token
+    private int counter = 1;
     public Scanner(String file){
         this.tokensTypes = new ArrayList<TokenInfo>();
         this.file = file;
@@ -38,11 +39,19 @@ public class Scanner {
     }
 
     public Token nextToken(){
+        // if it's new line so increase counter by 1
+        if(file.charAt(0) == '\n')
+            this.counter +=1;
+
+        // remove space and new line from first and end of string
         file= file.trim();
+
+        //loop over RE to find or match current token
         for(TokenInfo tokenInfo : tokensTypes)
         {
             Matcher matcher = tokenInfo.getPattern().matcher(file);
 
+            // if it's matches then remove this token from string file or code
             if(matcher.find()){
                 String  token = matcher.group();
                 file = matcher.replaceFirst("");
@@ -51,7 +60,8 @@ public class Scanner {
                return PrepareToken(tokenInfo, token);
             }
         }
-        throw new IllegalStateException("Could not parse for " + file);
+
+        throw new IllegalStateException("Could not parse line " + counter);
     }
 
     /**
@@ -62,16 +72,16 @@ public class Scanner {
     private Token PrepareToken(TokenInfo tokenInfo, String token){
         //correct token type
         if(token.equals("int") || token.equals("char") ||token.equals("float"))
-           return new Token(token, tokenInfo.getPattern(), TokenType.DATATYPE);
+           return new Token(token, tokenInfo.getPattern(), TokenType.DATATYPE, counter);
 
         if(token.equals("if") || token.equals("else") ||token.equals("main"))
-            return new Token(token, tokenInfo.getPattern(), TokenType.TOKEN);
+            return new Token(token, tokenInfo.getPattern(), TokenType.TOKEN, counter);
 
         //check if token is char then skip first and last char ''
         if(tokenInfo.getTokenType() == TokenType.CHAR)
-            return  new Token(token.substring(1, token.length() - 1), tokenInfo.getPattern(), tokenInfo.getTokenType());
+            return  new Token(token.substring(1, token.length() - 1), tokenInfo.getPattern(), tokenInfo.getTokenType(), counter);
 
-        return new Token(token, tokenInfo.getPattern(), tokenInfo.getTokenType());
+        return new Token(token, tokenInfo.getPattern(), tokenInfo.getTokenType(), counter);
     }
 
     public boolean hasNestToken(){

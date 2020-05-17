@@ -1,13 +1,6 @@
 /****program may have any number of if-else and any number of assignment or declaring Variables or identifier ****\
 // Main function
 int main(){
-    int x=5+6;
-       int ksd_f5878 = 5 + 7
-       int ksd_f5878=5+7
-       int x = 5 + 6;
-       if(x){
-           sdds;
-       }
 }
 
 // if statement with else and else is necessary for every if it must be exist (there is no if without else)
@@ -31,5 +24,6 @@ datatype identifier = value or another identifier or expression
 +,-,*, /, ()
 () has most priority then *,/ then +,-
 
-// print function
-cout << identifier
+// Note that
++,-,*, /, (), if, else, {, } is token to scanner
+
