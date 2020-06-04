@@ -2,7 +2,7 @@ package Scanner;
 
 public enum TokenType {
     TOKEN,
-    IDENTIVIER,
+    IDENTIFIER,
     DATATYPE,
     INTEGER,
     CHAR,

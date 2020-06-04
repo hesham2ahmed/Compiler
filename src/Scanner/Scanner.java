@@ -23,7 +23,7 @@ public class Scanner {
     private void prepareTokensInfo()
     {
         // For identifiers
-        tokensTypes.add(new TokenInfo(Pattern.compile("^(([a-zA-Z]([_]|[a-zA-Z0-9])*))"), TokenType.IDENTIVIER));
+        tokensTypes.add(new TokenInfo(Pattern.compile("^(([a-zA-Z]([_]|[a-zA-Z0-9])*))"), TokenType.IDENTIFIER));
         // For integer value
         tokensTypes.add(new TokenInfo(Pattern.compile("^((-)?[0-9]+)"), TokenType.INTEGER));
         // For float value
@@ -33,7 +33,7 @@ public class Scanner {
         // For Datatype
         tokensTypes.add(new TokenInfo(Pattern.compile("^(int|float|char)"), TokenType.DATATYPE));
         //others
-        for(String token : new String[] {"=", "\\(", "\\)", "<", ">", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";"})
+        for(String token : new String[] {">=", "<=", "==", "=", "<", ">", ",","\\(", "\\)", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";"})
             tokensTypes.add(new TokenInfo(Pattern.compile("^(" + token + ")"), TokenType.TOKEN));
 
     }

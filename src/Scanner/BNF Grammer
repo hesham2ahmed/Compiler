@@ -1,31 +1,39 @@
-// note 3 = epsilon
-program -> stmt_sequence
+// note 3 = epsilon or nothing
+1- program -> int main ( ) { stmt_sequence } $
 
-stmt_sequence -> statement stmt_sequence | 3
+2- stmt_sequence -> statement stmt_sequence'
 
-statement -> if_stmt| assign_stmt ; | declare_stmt ;
+3- stmt_sequence' -> stmt_sequence | 3
 
-if_stmt -> if condition {stmt_sequence} else {stmt_sequence} | 3
+4- statement -> if_stmt | assign_stmt ; | declare_stmt ;
 
-condition -> (exp condition exp) | < | > | == | >= | <=
+//I will use disambiguate rule to handle this, that's because the ll1 parser does not handle dangling else problem
+5- if_stmt -> if condition { stmt_sequence } else_part
 
-exp -> exp addop term | term
+6- else_part -> else { stmt_sequence } | 3
 
-addop -> + | -
+7- condition -> ( exp comp_sign exp )
 
-term -> term mulop factor | factor
+8- comp_sign ->  < | > | == | >= | <= | 3
 
-mulop -> * | /
+9- exp -> term exp'
 
-factor -> (exp) | number | identifier
+10- exp' -> add_op term exp' | 3
 
-assign_stmt -> identifier = exp
+11- add_op -> + | -
 
-declare_stmt -> datatype identifier
+12- term -> factor term'
 
-identifier -> [a-zA-Z] p
+13- term' -> mul_op factor term' | 3
 
-p -> p [a-zA-Z0-9] | 3 | _
+14- mul_op -> * | /
 
-datatype-> int | float | char
+15- factor -> ( exp ) | number | identifier
 
+16- declare_stmt -> datatype identifier x
+
+17- x -> = exp | 3
+
+18- assign_stmt -> identifier = exp
+
+19- datatype-> int | float | char
