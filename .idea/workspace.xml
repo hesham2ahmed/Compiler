@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab70d07e-7fca-45ec-8d28-1daa89bf0e02" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Scanner/BNF Grammer" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Scanner/BNF Grammer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Scanner/Scanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Scanner/Scanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Scanner/TokenType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Scanner/TokenType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanner/BNF Grammer" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanner/BNF Grammer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanner/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanner/Scanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanner/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanner/TokenType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/text2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/text2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +76,8 @@
       <workItem from="1591166483875" duration="2060000" />
       <workItem from="1591216470722" duration="18645000" />
       <workItem from="1591255289976" duration="4051000" />
+      <workItem from="1591341272033" duration="18000" />
+      <workItem from="1591341346041" duration="30095000" />
     </task>
     <servers />
   </component>
@@ -139,10 +133,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="470" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591166513719" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1589529206747">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1591375058182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1589529206747" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1591375058182" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1589491340838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
