@@ -1,7 +1,4 @@
 /****program may have any number of if-else and any number of assignment or declaring Variables or identifier ****\
-// Main function
-int main(){
-}
 
 // if statement with else and else is necessary for every if it must be exist (there is no if without else)
 if (condition){
