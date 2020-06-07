@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * what you will receive from this class are all tokens in the file you sent to constructor as a string
+ * what you will receive from this class? Are all tokens in the file you sent to the constructor as a string
  */
 public class Scanner {
     // array list contains types of tokens and their patterns
@@ -16,7 +16,8 @@ public class Scanner {
     private int counter = 1;
     public Scanner(String file){
         this.tokensTypes = new ArrayList<TokenInfo>();
-        this.file = file;
+        // remove space and new line from first and end of string
+        this.file = file + "$";
         prepareTokensInfo();
     }
 
@@ -33,7 +34,7 @@ public class Scanner {
         // For Datatype
         tokensTypes.add(new TokenInfo(Pattern.compile("^(int|float|char)"), TokenType.DATATYPE));
         //others
-        for(String token : new String[] {">=", "<=", "==", "=", "<", ">", ",","\\(", "\\)", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";"})
+        for(String token : new String[] {">=", "<=", "==", "=", "<", ">", ",","\\(", "\\)", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";", "\\$"})
             tokensTypes.add(new TokenInfo(Pattern.compile("^(" + token + ")"), TokenType.TOKEN));
 
     }

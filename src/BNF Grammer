@@ -29,11 +29,11 @@
 
 15- mul_op -> * | /
 
-16- factor -> ( exp ) | number | id
+16- factor -> ( exp ) | value | id
 
-17- declare_stmt -> datatype id x
+17- declare_stmt -> datatype id x_stmt
 
-18- x -> = exp | 3
+18- x_stmt -> = exp | 3
 
 19- assign_stmt -> id = exp
 

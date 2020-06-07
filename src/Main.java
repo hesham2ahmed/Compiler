@@ -1,14 +1,20 @@
+import Parser.Parser;
 import Scanner.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String path_to_file = "src/text2.txt";
         // Read code from the file
         String code = readFile(path_to_file);
-        // scan this code to tokens
+
+        Parser parser = new Parser(new Scanner(code));
+        parser.start();
+
+        /*
+        // testing the scanner
         Scanner scanner = new Scanner(code);
         while(scanner.hasNestToken()){
             Token token = scanner.nextToken();
@@ -17,6 +23,8 @@ public class Main {
             System.out.print(" "+token.getType());
             System.out.println(" "+token.getLine());
         }
+        */
+
     }
 
     private static String readFile(String path){
