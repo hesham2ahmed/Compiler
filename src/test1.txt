@@ -1,6 +1,5 @@
-int x= -5;
-char y = 10;
-int y;
-float z = u;
-int q = x + y * x - z / x;
-if(x / 2 == 10){}
+if(10){
+   if(5)
+	{}
+    else{if(10){}}
+}

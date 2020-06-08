@@ -75,6 +75,7 @@ public class Parser {
             stack.pop();
         }
         else {
+            //System.out.println(stack.peek() +" " +cur_token.getToken());
             try {
                 // use the name of expression to call the appropriate function
                 Parser.class.getMethod(stack.pop()).invoke(this);
@@ -151,7 +152,7 @@ public class Parser {
             stack.push("else");
         }
         else if (cur_token.getToken().equals("if") || cur_token.getType() == TokenType.IDENTIFIER
-        || cur_token.getType() == TokenType.DATATYPE || cur_token.getToken().equals("$"))
+        || cur_token.getType() == TokenType.DATATYPE || cur_token.getToken().equals("$") || cur_token.getToken().equals("}"))
             Epsilon();
         else
             ERROR.syntaxError(cur_token);
