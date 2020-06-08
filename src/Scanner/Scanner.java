@@ -25,10 +25,10 @@ public class Scanner {
     {
         // For identifiers
         tokensTypes.add(new TokenInfo(Pattern.compile("^(([a-zA-Z]([_]|[a-zA-Z0-9])*))"), TokenType.IDENTIFIER));
-        // For integer value
-        tokensTypes.add(new TokenInfo(Pattern.compile("^((-)?[0-9]+)"), TokenType.INTEGER));
         // For float value
         tokensTypes.add(new TokenInfo(Pattern.compile("^((-)?[0-9]+(.)[0-9]+)"), TokenType.FLOAT));
+        // For integer value
+        tokensTypes.add(new TokenInfo(Pattern.compile("^((-)?[0-9]+)"), TokenType.INTEGER));
         // For Char value
         tokensTypes.add(new TokenInfo(Pattern.compile("^(\'(\\w|\\s)\')"), TokenType.CHAR));
         // For Datatype

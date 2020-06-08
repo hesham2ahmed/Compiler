@@ -1,19 +1,25 @@
 package Parser;
 
 import Scanner.*;
+import com.sun.org.apache.xpath.internal.objects.XString;
+import javafx.util.Pair;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Stack;
+import java.util.Dictionary;
 
 public class Parser {
     private final Scanner scanner;
     private Stack<String> stack;
     private Token cur_token;
+    private Dictionary<String, String> dictionary;
 
     // constructor
     public Parser(Scanner scanner){
         this.scanner = scanner;
         this.stack = new Stack<String>();
+        this.dictionary = new Hashtable<>();
     }
 
     /**
@@ -39,9 +45,16 @@ public class Parser {
     private void match(){
         // this is correct case where stack has only $ and last token is $
         if(stack.peek().equals("$") && cur_token.getToken().equals("$")){
-            System.out.println("CORRECT");
+            System.out.println("SUCCESS");
             stack.pop();
             return;
+        }
+        else if (cur_token.getType() == TokenType.DATATYPE && (stack.peek().equals("float") || stack.peek().equals("char") || stack.peek().equals("int")))
+        {
+            cur_token = scanner.nextToken();
+            // add a new identifier to the dictionary
+            putNewIdentifier(cur_token.getToken(), stack.peek(), cur_token);
+            stack.pop();
         }
         // cases
         else if (cur_token.getToken().equals(stack.peek()))
@@ -50,14 +63,13 @@ public class Parser {
             stack.pop();
         } else if (cur_token.getType() == TokenType.IDENTIFIER && stack.peek().equals("id"))
         {
+            // check if the identifier is declared or not before if not then that's an error
+            if(!checkIdentifier(cur_token))
+                ERROR.notDefinedError(cur_token);
             cur_token = scanner.nextToken();
             stack.pop();
         } else if ((cur_token.getType() == TokenType.INTEGER || cur_token.getType() == TokenType.CHAR || cur_token.getType() == TokenType.FLOAT)
                 && stack.peek().equals("value"))
-        {
-            cur_token = scanner.nextToken();
-            stack.pop();
-        }else if (cur_token.getType() == TokenType.DATATYPE && (stack.peek().equals("int") || stack.peek().equals("char") || stack.peek().equals("float")))
         {
             cur_token = scanner.nextToken();
             stack.pop();
@@ -68,7 +80,7 @@ public class Parser {
                 Parser.class.getMethod(stack.pop()).invoke(this);
             } catch (Exception e) {
                 // catch error in the code
-                detectError(cur_token.getLine(), cur_token.getToken());
+                ERROR.syntaxError(cur_token);
             }
         }
     }
@@ -82,7 +94,7 @@ public class Parser {
         cur_token.getType() == TokenType.DATATYPE)
             stack.push("stmt_seq");
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //2-
     public void stmt_seq(){
@@ -92,13 +104,13 @@ public class Parser {
             stack.push("stmt");
         }
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //3-
     public void stmt_seq2(){
         if(!cur_token.getToken().equals("if") && cur_token.getType() != TokenType.IDENTIFIER &&
                 cur_token.getType() != TokenType.DATATYPE && !cur_token.getToken().equals("}") && !cur_token.getToken().equals("$"))
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
         else if(cur_token.getToken().equals("}") || cur_token.getToken().equals("$"))
             Epsilon();
         else
@@ -113,7 +125,7 @@ public class Parser {
         else if (cur_token.getType() == TokenType.DATATYPE)
             stack.push("declare_stmt");
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //5-
     public void if_stmt(){
@@ -128,7 +140,7 @@ public class Parser {
             stack.push("if");
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //6-
     public void else_part(){
@@ -142,7 +154,7 @@ public class Parser {
         || cur_token.getType() == TokenType.DATATYPE || cur_token.getToken().equals("$"))
             Epsilon();
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //7-
     public void condition(){
@@ -153,7 +165,7 @@ public class Parser {
             stack.push("exp");
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //8-
     public void condition2(){
@@ -170,7 +182,7 @@ public class Parser {
             stack.push("comp_sign");
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //9-
     public void comp_sign(){
@@ -187,7 +199,7 @@ public class Parser {
         else if (cur_token.getToken().equals("=="))
             stack.push("==");
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //10-
     public void exp() {
@@ -200,7 +212,7 @@ public class Parser {
             stack.push("term");
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //11-
     public void exp2(){
@@ -220,7 +232,7 @@ public class Parser {
             Epsilon();
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //12-
     public void add_op(){
@@ -229,7 +241,7 @@ public class Parser {
         else if(cur_token.getToken().equals("-"))
             stack.push("-");
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //13-
     public void term(){
@@ -242,7 +254,7 @@ public class Parser {
             stack.push("factor");
         }
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //14-
     public void term2(){
@@ -264,7 +276,7 @@ public class Parser {
             Epsilon();
         }
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //15-
     public void mul_op(){
@@ -273,7 +285,7 @@ public class Parser {
         else if(cur_token.getToken().equals("/"))
             stack.push("/");
         else
-            detectError(cur_token.getLine(),cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //16-
     public void factor(){
@@ -290,7 +302,7 @@ public class Parser {
             stack.push("value");
         }
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //17-
     public void declare_stmt(){
@@ -301,7 +313,7 @@ public class Parser {
             stack.push("datatype");
         }
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //18-
     public void x_stmt(){
@@ -312,7 +324,7 @@ public class Parser {
         else if(cur_token.getToken().equals(";"))
             Epsilon();
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
     //19-
     public void assign_stmt(){
@@ -323,29 +335,36 @@ public class Parser {
             stack.push("id");
         }
         else
-            detectError(cur_token.getLine(), cur_token.getToken() );
+            ERROR.syntaxError(cur_token);
     }
     //20-
     public void datatype(){
         if(cur_token.getToken().equals("int"))
             stack.push("int");
-        else if(cur_token.getToken() == "float")
+        else if(cur_token.getToken().equals("float"))
             stack.push("float");
-        else if(cur_token.getType().equals("char"))
+        else if(cur_token.getToken().equals("char"))
             stack.push("char");
         else
-            detectError(cur_token.getLine(), cur_token.getToken());
+            ERROR.syntaxError(cur_token);
     }
 
     /**
-     * print the error with line and token
-     * @param line as string
-     * @param token as object
+     * check if the identifier is exsit or not
      */
-    private void detectError(int line, String token){
-        throw new IllegalStateException("Could not parse line " + line + " for " + token);
+    private boolean checkIdentifier(Token token){
+        if(dictionary.get(token.getToken()) == null)
+           return false;
+        return true;
     }
 
+    private void putNewIdentifier(String id, String datatype, Token token){
+        if(!checkIdentifier(token)){
+            dictionary.put(id, datatype);
+        }
+        else
+            ERROR.definedError(token);
+    }
     /**
      * just function to do nothing
      */
