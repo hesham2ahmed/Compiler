@@ -1,0 +1,17 @@
+int main(){
+	int x = 10;
+	float y = 5.5;
+	x = y + ((5 * 10) / 2) - 3;
+	if(x > y){
+		if((x + y) == 0){
+			x = 1;
+		}else {
+			x = 0;
+		}
+	}else{
+		y = x;
+	}
+	if(y != 0){
+		y = 0;	
+	}
+}

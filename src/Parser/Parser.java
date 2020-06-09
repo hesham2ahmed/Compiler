@@ -34,8 +34,14 @@ public class Parser {
         // get the first token
         cur_token = scanner.nextToken();
         stack.push("$");
+        stack.push("}");
         // program is the start point
         stack.push("program");
+        stack.push("{");
+        stack.push(")");
+        stack.push("(");
+        stack.push("main");
+        stack.push("int");
         while(!stack.empty()){
             match();
         }
@@ -77,7 +83,7 @@ public class Parser {
             stack.pop();
         }
         else {
-            //System.out.println(stack.peek() +" " +cur_token.getToken());
+            System.out.println(stack.peek() +" " +cur_token.getToken());
             try {
                 // getting the top of the stack to expect the error
                 expecting = stack.peek();
@@ -179,7 +185,7 @@ public class Parser {
             Epsilon();
         else if(cur_token .getToken().equals("<")  ||
                 cur_token .getToken().equals(">")  ||
-                cur_token .getToken().equals("=")  ||
+                cur_token .getToken().equals("!=")  ||
                 cur_token .getToken().equals("<=") ||
                 cur_token .getToken().equals(">=") ||
                 cur_token .getToken().equals("==") )
@@ -197,8 +203,8 @@ public class Parser {
             stack.push("<");
         else if (cur_token.getToken().equals(">"))
             stack.push(">");
-        else if (cur_token.getToken().equals("="))
-            stack.push("=");
+        else if (cur_token.getToken().equals("!="))
+            stack.push("!=");
         else if (cur_token.getToken().equals("<="))
             stack.push("<=");
         else if (cur_token.getToken().equals(">="))
@@ -211,7 +217,7 @@ public class Parser {
     //10-
     public void exp() {
         if (cur_token.getType() == TokenType.IDENTIFIER
-                || cur_token.getToken().equals(")")
+                || cur_token.getToken().equals("(")
                 || cur_token.getType() == TokenType.INTEGER
                 || cur_token.getType() == TokenType.FLOAT
                 || cur_token.getType() == TokenType.CHAR) {
@@ -231,7 +237,7 @@ public class Parser {
         else if(cur_token.getToken().equals(")") ||
                 cur_token.getToken().equals("<") ||
                 cur_token.getToken().equals(">") ||
-                cur_token.getToken().equals("=") ||
+                cur_token.getToken().equals("!=") ||
                 cur_token.getToken().equals("<=")||
                 cur_token.getToken().equals(">=")||
                 cur_token.getToken().equals("==")||
@@ -271,7 +277,7 @@ public class Parser {
             stack.push("mul_op");
         } else if(cur_token.getToken().equals("<")||
                 cur_token.getToken().equals(">")||
-                cur_token.getToken().equals("=")||
+                cur_token.getToken().equals("!=")||
                 cur_token.getToken().equals("<=")||
                 cur_token.getToken().equals(">=")||
                 cur_token.getToken().equals("==")||

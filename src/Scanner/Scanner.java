@@ -34,7 +34,7 @@ public class Scanner {
         // For Datatype
         tokensTypes.add(new TokenInfo(Pattern.compile("^(int|float|char)"), TokenType.DATATYPE));
         //others
-        for(String token : new String[] {">=", "<=", "==", "=", "<", ">", ",","\\(", "\\)", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";", "\\$"})
+        for(String token : new String[] {">=", "<=", "==", "=", "!=","<", ">", ",","\\(", "\\)", "\\{", "\\}", "if", "else", "!", "\\+", "\\-", "\\/", "\\*", "main", ";", "\\$"})
             tokensTypes.add(new TokenInfo(Pattern.compile("^(" + token + ")"), TokenType.TOKEN));
 
     }

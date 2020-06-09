@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String path_to_file = "src/test1.txt";
+        String path_to_file = "src/test case1.txt";
         // Read code from the file
         String code = readFile(path_to_file);
 
