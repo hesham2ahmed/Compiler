@@ -14,6 +14,8 @@ public class Parser {
     private Stack<String> stack;
     private Token cur_token;
     private Dictionary<String, String> dictionary;
+    public static String expecting;
+    private boolean flag = true;
 
     // constructor
     public Parser(Scanner scanner){
@@ -77,6 +79,7 @@ public class Parser {
         else {
             //System.out.println(stack.peek() +" " +cur_token.getToken());
             try {
+                expecting = stack.peek();
                 // use the name of expression to call the appropriate function
                 Parser.class.getMethod(stack.pop()).invoke(this);
             } catch (Exception e) {
@@ -114,6 +117,7 @@ public class Parser {
             ERROR.syntaxError(cur_token);
         else if(cur_token.getToken().equals("}") || cur_token.getToken().equals("$"))
             Epsilon();
+
         else
             stack.push("stmt_seq");
     }
@@ -184,6 +188,7 @@ public class Parser {
         }
         else
             ERROR.syntaxError(cur_token);
+
     }
     //9-
     public void comp_sign(){
@@ -273,11 +278,11 @@ public class Parser {
                 cur_token.getToken().equals("+")||
                 cur_token.getToken().equals(")")||
                 cur_token.getToken().equals("-"))
-        {
             Epsilon();
-        }
+
         else
             ERROR.syntaxError(cur_token);
+
     }
     //15-
     public void mul_op(){
