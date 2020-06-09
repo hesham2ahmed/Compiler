@@ -362,7 +362,7 @@ public class Parser {
     }
 
     /**
-     * check if the identifier is exsit or not
+     * check if the identifier is exist or not
      */
     private boolean checkIdentifier(Token token){
         if(dictionary.get(token.getToken()) == null)

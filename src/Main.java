@@ -6,24 +6,23 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String path_to_file = "src/test case5.txt";
+        String path_to_file = "src/test case3.txt";
         // Read code from the file
         String code = readFile(path_to_file);
 
-        Parser parser = new Parser(new Scanner(code));
-        parser.start();
-
-        /*
         // testing the scanner
         Scanner scanner = new Scanner(code);
         while(scanner.hasNestToken()){
             Token token = scanner.nextToken();
             // these tokens and their types
-            System.out.print(token.getToken());
-            System.out.print(" "+token.getType());
-            System.out.println(" "+token.getLine());
+            System.out.print("Token: " + token.getToken());
+            System.out.print(", Type: "+token.getType());
+            System.out.println(", Line: "+token.getLine());
         }
-        */
+
+        Parser parser = new Parser(new Scanner(code));
+        parser.start();
+
 
     }
 
