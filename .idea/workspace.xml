@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab70d07e-7fca-45ec-8d28-1daa89bf0e02" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compiler .docx" beforeDir="false" afterPath="$PROJECT_DIR$/compiler .docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler .docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compiler tables.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test case1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test case1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test case2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test case2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test case3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test case3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$mpiler .docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,7 @@
       <workItem from="1591553144866" duration="10736000" />
       <workItem from="1591597786783" duration="5989000" />
       <workItem from="1591644505833" duration="16378000" />
-      <workItem from="1591685261443" duration="5785000" />
+      <workItem from="1591685261443" duration="10871000" />
     </task>
     <servers />
   </component>

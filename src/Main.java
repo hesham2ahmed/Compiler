@@ -10,6 +10,7 @@ public class Main {
         // Read code from the file
         String code = readFile(path_to_file);
 
+        /*
         // testing the scanner
         Scanner scanner = new Scanner(code);
         while(scanner.hasNestToken()){
@@ -19,6 +20,7 @@ public class Main {
             System.out.print(", Type: "+token.getType());
             System.out.println(", Line: "+token.getLine());
         }
+         */
 
         Parser parser = new Parser(new Scanner(code));
         parser.start();
