@@ -83,7 +83,7 @@ public class Parser {
             stack.pop();
         }
         else {
-            System.out.println(stack.peek() +" " +cur_token.getToken());
+            //System.out.println(stack.peek() +" " +cur_token.getToken());
             try {
                 // getting the top of the stack to expect the error
                 expecting = stack.peek();

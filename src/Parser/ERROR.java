@@ -23,7 +23,7 @@ public abstract class ERROR {
         if(Parser.expecting.equals("id"))
             Parser.expecting = "variable";
         throw new IllegalStateException("Could not parse line " + token.getLine() + " at "+
-                "\"" + token.getToken() + "\"" + " expected " + Parser.expecting + " (syntax error)");
+                "\"" + token.getToken() + "\"" + ", expected " + Parser.expecting + " (syntax error)");
     }
 
     // if the identifier is not defined before and user is using it.

@@ -62,7 +62,7 @@ public class Scanner {
             }
         }
 
-        throw new IllegalStateException("Could not parse line " + counter);
+        throw new IllegalStateException("Could not scan line " + counter);
     }
 
     /**
