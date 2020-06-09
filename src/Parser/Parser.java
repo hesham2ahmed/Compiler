@@ -79,6 +79,7 @@ public class Parser {
         else {
             //System.out.println(stack.peek() +" " +cur_token.getToken());
             try {
+                // getting the top of the stack to expect the error
                 expecting = stack.peek();
                 // use the name of expression to call the appropriate function
                 Parser.class.getMethod(stack.pop()).invoke(this);
@@ -282,7 +283,6 @@ public class Parser {
 
         else
             ERROR.syntaxError(cur_token);
-
     }
     //15-
     public void mul_op(){
